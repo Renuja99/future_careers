@@ -6,13 +6,13 @@ const Landing = () => {
                 
         <>
         <Header/>
-        <div className="flex flex-col justify-center items-center ">
+        <div className="flex flex-col justify-center items-center">
         <section className="relative pb-32 w-3/4 ">
         <img className="hidden lg:block lg:absolute -top-20 -left-20 mt-32" src="wallet-svgrepo-com.svg" alt=""/>
         <img className="hidden lg:block lg:absolute bottom-10 right-0 mt-20" src="terms-of-delivery-svgrepo-com.svg" alt=""/>
         <div className="relative container pt-12 px-4 mx-auto text-center">
             <h2 className="mt-24 mb-8 lg:mb-24 text-4xl lg:text-8xl font-semibold text-red-400">Find Great places to work and<br/>top employees to hire.</h2>
-            <p className="max-w-3xl mx-auto mb-8 lg:mb-12 text-2xl text-gray-700 font-black">Build a well-presented brand that everyone will love. Take care to develop resources continually and integrity them with previous projects.</p>
+            <p className="max-w-3xl mx-auto mb-8 lg:mb-12 text-2xl text-gray-700 font-black">Build a well-presented brand that everyone will love. Take care to develop resources continually and integrate them with previous projects.</p>
             <a className="inline-block w-full md:w-auto mb-2 md:mb-0 px-8 py-4 mr-4 text-xl font-medium leading-normal bg-red-400 hover:bg-red-500 text-white rounded transition duration-200" href="#">Sign Up to get employed</a>
             <a className="inline-block w-full md:w-auto mb-2 md:mb-0 px-8 py-4 mr-4 text-xl font-medium leading-normal bg-indigo-400 hover:bg-indigo-500 text-white rounded transition duration-200" href="#">Hire employees/ Post job</a>
         </div>

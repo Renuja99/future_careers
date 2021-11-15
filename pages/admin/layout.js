@@ -44,7 +44,7 @@ const Layout = () => {
             <div className="bg-white h-full dark:bg-gray-700">
                 <div className="flex items-center justify-start pt-6 ml-8">
                     <p className="font-bold dark:text-white text-xl">
-                     Layout
+                     Dashboard
                     </p>
                 </div>
                 <nav className="mt-6">
