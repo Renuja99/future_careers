@@ -1,6 +1,5 @@
 import 'tailwindcss/tailwind.css'
-
-
+import '../styles.css'
 
 
 function classNames(...classes) {

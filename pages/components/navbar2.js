@@ -3,8 +3,6 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import Job_advert_form from './job_advert_form'
-
 
 const user = {
   name: 'Tom Cook',
@@ -13,8 +11,8 @@ const user = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-  { name: 'Dashboard', href: '/organization/newJobAdvert', current: false },
-  { name: 'New Job Advert', href: '#', current: true },
+  { name: 'Dashboard', href: '/organization/newJobAdvert', current: true },
+  { name: 'New Job Advert', href: '#', current: false },
   { name: 'Job Adverts', href: '#', current: false },
  
 ]
@@ -27,24 +25,13 @@ const userNavigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-
-export default function Example() {
-  return (
-    <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
-      <div className="min-h-full">
+const navbar2 = () => {
+    return (
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
               <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16">
+                <div className="flex items-center justify-between h-20  ">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
                     <div className="flex">
@@ -219,26 +206,7 @@ export default function Example() {
             </>
           )}
         </Disclosure>
-
-        <header className="bg-white shadow">
-          <div className="w-2/3 mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Post a new Job Advertisement</h1>
-          </div>
-        </header>
-        <main>
-          <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-            {/* Replace with your content */}
-            <div className="px-4 py-6 sm:px-0">
-              <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
-
-             <Job_advert_form/>
-              </div>
-            </div>
-            {/* /End replace */}
-          </div>
-        </main>
-      </div>
-    </>
-  )
+    )
 }
 
+export default navbar2

@@ -42,16 +42,11 @@ function CheckIcon(props) {
 
 export default function login(){
 
-
-
-
   const [selected, setSelected] = useState(userType[0])
 
   //SET REFERENCES TO EMAIL AND PASSWORD
   const emailRef = useRef()
   const passwordRef = useRef()
-
-
   const router = useRouter()
 
 
@@ -59,11 +54,9 @@ export default function login(){
 
     //PREVENTS  REFRESHING OF PAGE
     event.preventDefault();
-
     // GETS THE CURRENT VALUE OF THE REFERENCES AND ASSIGNS IT TO THE CORRESPONDING CONSTANTS
     const enteredEmail = emailRef.current.value;
-    const enteredPassword = passwordRef.current.value;
-   
+    const enteredPassword = passwordRef.current.value; 
     const reqBody = { email: enteredEmail, password: enteredPassword , userType: selected.name}
 
     

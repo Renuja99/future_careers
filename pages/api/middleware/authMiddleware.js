@@ -31,11 +31,8 @@ const protect = async(req, res)=>{
         }catch(error){      
         //* catches the error of not having req.headers.authorization set
         
-
         return {message: error.message , status: 401 } 
 
     }   
 }
-
-
 export default protect

@@ -20,18 +20,6 @@ export default async (req, res)=>{
         if(user){
 
             const user_id = user._id
-
-            // res.status(201).json({
-
-            //     _id: user._id,
-            //     firstName: user.firstName,
-            //     lastName: user.lastName,
-            //     email: user.email,
-            //     password: user.password,
-            //     userType: user.userType 
-
-
-            // })
             
             const company = await Company.create({companyName, noOfEmp, role_in_hiring_process, description, street, city, state, country, zipCode, user_id})
 
