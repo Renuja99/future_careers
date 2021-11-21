@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Table from './job_adverts_table'
 import Modal from './job_advert_form_modal'
 import Layout from './layout'
+import { useState } from 'react'
 
 const user = {
   name: 'Tom Cook',
@@ -20,6 +21,7 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+
   return (
     <>
       {/*
@@ -34,15 +36,15 @@ export default function Example() {
         
         <Layout/>
         <header className="bg-white shadow">
-          <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          <div className="w-3/4 mx-auto py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
             <h1 className="text-2xl font-bold text-gray-900">Job Advertisements</h1>
-            <Modal/>
+            <Modal />
           </div>
         </header>
         <main className="bg-gray-100 h-4/5">
-          <div className="max-w-7xl  mx-auto py-6 sm:px-6 lg:px-8">
+          <div className="w-3/4  mx-auto py-6 sm:px-6 lg:px-8">
             
-            <Table/>
+            <Table />
             
             {/* /End replace */}
           </div>

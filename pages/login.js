@@ -5,9 +5,9 @@ import { useRouter} from 'next/router'
 const userType = [
   {
     name: 'admin',
-    ram: '12GB',
-    cpus: '6 CPUs',
-    disk: '160 GB SSD disk',
+    ram: '',
+    cpus: '',
+    disk: '',
   },
   {
     name: 'Job Seeker',

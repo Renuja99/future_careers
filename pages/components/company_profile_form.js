@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useRouter} from 'next/router'
 const Index = () => {
     
     const [firstName, setFirstName] = useState();
@@ -15,6 +16,8 @@ const Index = () => {
     const [noOfEmployees, setNoOfEmployees] = useState();
     const [companyRole, setCompanyRole] = useState();
 
+    const router = useRouter()
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const reqBody = {firstName: firstName, lastName:lastName, email: email, password:password, userType:'company', street: streetAddress, city: city,  state: province, country:country, zipCode: zipCode, description: description, companyName:companyName, noOfEmp:noOfEmployees, role_in_hiring_process: companyRole };
@@ -25,7 +28,19 @@ const Index = () => {
             headers: {
                 'Content-Type': 'application/json',
               }
-        })
+        }).then(response => response.json())
+        .then((data)=> localStorage.setItem("userInfo", JSON.stringify(data)))
+      .then(()=>{
+       
+        let userInfo = JSON.parse(localStorage.getItem("userInfo"))
+      if (userInfo.userType === 'company'){
+        router.push('/organization/company_dashboard')
+      }else{
+        console.log('user is not a company')
+      }
+    
+       })
+
     };
     return (
         <form id="login" onSubmit={handleSubmit}>
@@ -44,7 +59,7 @@ const Index = () => {
                     <div className="mx-auto">
                         <div className="xl:w-9/12 w-11/12 mx-auto xl:mx-0">
                             <div className="rounded relative mt-8 h-48">
-                                <img src="https://cdn.tuk.dev/assets/webapp/forms/form_layouts/form1.jpg" alt className="w-full h-full object-cover rounded absolute shadow" />
+                                <img src="https://cdn.tuk.dev/assets/webapp/forms/form_layouts/form1.jpg" alt="true" className="w-full h-full object-cover rounded absolute shadow" />
                                 <div className="absolute bg-black opacity-50 top-0 right-0 bottom-0 left-0 rounded" />
                                 <div className="flex items-center px-3 py-2 rounded absolute right-0 mr-4 mt-4 cursor-pointer">
                                     <p className="text-xs text-gray-100">Change Cover Photo</p>
@@ -58,7 +73,7 @@ const Index = () => {
                                     </div>
                                 </div>
                                 <div className="w-20 h-20 rounded-full bg-cover bg-center bg-no-repeat absolute bottom-0 -mb-10 ml-12 shadow flex items-center justify-center">
-                                    <img src="https://cdn.tuk.dev/assets/webapp/forms/form_layouts/form2.jpg" alt className="absolute z-0 h-full w-full object-cover rounded-full shadow top-0 left-0 bottom-0 right-0" />
+                                    <img src="https://cdn.tuk.dev/assets/webapp/forms/form_layouts/form2.jpg" alt="true" className="absolute z-0 h-full w-full object-cover rounded-full shadow top-0 left-0 bottom-0 right-0" />
                                     <div className="absolute bg-black opacity-50 top-0 right-0 bottom-0 left-0 rounded-full z-0" />
                                     <div className="cursor-pointer flex flex-col justify-center items-center z-10 text-gray-100">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-edit" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -72,7 +87,7 @@ const Index = () => {
                                 </div>
                             </div>
                             
-                            <div className="mt-16 ml-5 flex flex-col xl:w-3/5 lg:w-1/2 md:w-1/2 w-full">
+                            <div className="mt-16  flex flex-col xl:w-full lg:w-1/2 md:w-1/2 w-full">
                                 <label htmlFor="about" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
                                     About
                                 </label>
@@ -82,7 +97,7 @@ const Index = () => {
                         </div>
                     </div>
                 </div>
-                <div className="container mx-auto bg-white dark:bg-gray-800 mt-10 rounded px-4">
+                <div className="container mx-auto bg-white dark:bg-gray-800 mt-10 rounded px-0">
                     <div className="xl:w-full border-b border-gray-300 dark:border-gray-700 py-5">
                         <div className="flex w-11/12 mx-auto xl:w-full xl:mx-0 items-center">
                             <p className="text-lg text-gray-800 dark:text-gray-100 font-bold">Company Details</p>
@@ -93,17 +108,17 @@ const Index = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="mx-auto pt-4">
+                    <div className="mx-5 md:mx-auto  pt-4 ">
                         <div className="container mx-auto">
                             <div className="xl:w-full lg:w-full  md:w-full flex flex-col mb-6">
-                                <div className="flex justify-start gap-48">
-                                    <div className="flex flex-col w-96">
+                                <div className="flex flex-col lg:flex-row justify-start lg:gap-48 ">
+                                    <div className="flex flex-col w-full md:w-96 mb-3">
                                         <label htmlFor="FirstName" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
                                             First Name
                                         </label>
                                         <input type="text" id="FirstName" name="firstName" required className="border w-full border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400" onChange={(e)=>setFirstName(e.target.value)}/>
                                     </div>
-                                    <div className="flex flex-col w-96">
+                                    <div className="flex flex-col w-full md:w-96">
                                     <label htmlFor="CompanyName" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
                                         Organization Name
                                     </label>
@@ -111,7 +126,7 @@ const Index = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex gap-48">
+                            <div className="flex flex-col lg:flex-row lg:gap-48">
                                     <div className="xl:w-96 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
                                         <label htmlFor="LastName" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
                                             Last Name
@@ -125,7 +140,7 @@ const Index = () => {
                                         <input type="text" id="NumberOfEmployees" name="noOfEmp" required className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400" onChange={(e)=>setNoOfEmployees(e.target.value)}/>
                                     </div>
                             </div>
-                            <div className="flex gap-48">
+                            <div className="flex flex-col lg:flex-row lg:gap-48">
                                     <div className="xl:w-96 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
                                         <label htmlFor="Email" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
                                             Email

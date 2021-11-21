@@ -126,7 +126,7 @@ const Index = () => {
                                 <label htmlFor="StreetAddress" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
                                     Street Address
                                 </label>
-                                <input type="text" id="StreetAddress" name="streetAddress" required className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400" placeholder />
+                                <input type="text" id="StreetAddress" name="streetAddress" required className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400"  />
                             </div>
                             <div className="xl:w-1/4 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
                                 <label htmlFor="City" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
