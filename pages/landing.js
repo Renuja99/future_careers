@@ -1,5 +1,6 @@
 import Navbar2 from "./components/navbar2"
 import Footer1 from "./components/footer"
+import Link from "next/link"
 
 const Landing = () => {
     return (
@@ -13,8 +14,15 @@ const Landing = () => {
         <div className="relative container  pt-12 px-4 mx-auto text-center">
             <h2 className="lg:mt-24 mb-8 lg:mb-24 text-3xl leading-loose lg:text-8xl font-black text-green-400">Find Great places to work and<br/>top employees to hire</h2>
             <h2 className="max-w-5xl mx-auto mb-8 lg:mb-24 lg:text-3xl font-normal lg:leading-10 text-gray-700">Find a dream job that perfectly matches your needs! Applying is just one click away! Make your job adverts stand out using our brand new features! Find the best match for your vacancy through FutureSeekers.lk </h2>
+
+            <Link href='/components/user_profile_form'>
             <a className="inline-block w-full md:w-auto mb-2 md:mb-0 px-8 py-4 mr-4 text-xl font-b leading-normal bg-red-400 hover:bg-red-500 text-white rounded transition duration-200" href="#">Sign Up to get employed</a>
+
+            </Link>
+
+            <Link href='/components/company_profile_form'>
             <a className="inline-block w-full md:w-auto mb-2 md:mb-0 px-8 py-4 mr-4 text-xl font-b leading-normal bg-indigo-400 hover:bg-indigo-500 text-white rounded transition duration-200" href="#">Hire employees/ Post job</a>
+            </Link>
         </div>
         
         </section>

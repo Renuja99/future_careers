@@ -1,4 +1,3 @@
-import React from 'react'
 import './Payment.module.css'
 
 const Payment = () => {

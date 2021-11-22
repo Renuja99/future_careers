@@ -1,9 +1,10 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState} from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import NotificationPopover from './notification_popover'
+import { useRouter } from 'next/router'
 
 
 const user = {
@@ -13,7 +14,7 @@ const user = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-  { name: 'Home', href: '/organization/newJobAdvert', current: true },
+  { name: 'Home', href: '/', current: true },
   { name: 'Contact Us', href: '#', current: false },
   { name: 'About Us', href: '#', current: false },
  
@@ -35,11 +36,32 @@ const navbar2 = () => {
 
   const [ loggedIn, setLoggedIn] = useState(false)
   const [ userInfoStorage, setUserInfoFromLocalStorage] = useState()
+  const [parsedUserInfo, setParsedUserInfo] = useState()
 
- const userNavigation = [
+  const router = useRouter()
+
+ const adminNavigation = [
+  { name: 'Your Profile', href: '#', function: ()=>{ return router.push('/admin')}},
+  { name: 'Sets', href: '#', function: ()=>{} },
+  { name: 'Sign out', href: '#', function : function() {
+    return setUserInfoFromLocalStorage(localStorage.removeItem("userInfo"))}},
+  
+
+]
+
+const companyNavigation = [
+  { name: 'Your Profile', href: '#', function: ()=>{return router.push('/organization/company_dashboard')}},
+  { name: 'Settings', href: '#', function: '#' },
+  { name: 'Sign out', href: '#', function: '' },
+  
+
+]
+
+const employeeNavigation = [
   { name: 'Your Profile', href: '#', function: '#'},
   { name: 'Settings', href: '#', function: '#' },
-  { name: 'Sign out', href: '#', function: ()=>{ setUserInfoFromLocalStorage(localStorage.removeItem("userInfo")) } },
+  { name: 'Sign ', href: '#', function: '' },
+  
 ]
 
   useEffect(()=>{
@@ -49,8 +71,12 @@ const navbar2 = () => {
 
     setUserInfoFromLocalStorage(localStorage.getItem("userInfo"))
 
+    
+
      if(userInfoStorage){
     const userInfo = JSON.parse(userInfoStorage)
+
+    setParsedUserInfo(userInfo)
       if(userInfo){
         setLoggedIn(true)
       }
@@ -83,7 +109,7 @@ const navbar2 = () => {
                     <div className="hidden md:block">
                       <div className="ml-64 flex items-baseline space-x-4">
 
-                        <Link href="/organization/company_dashboard">
+                        <Link href="/">
                           <a
                             key={navigation[0].name}
                             href={navigation[0].href}
@@ -157,22 +183,49 @@ const navbar2 = () => {
                                 leaveTo="transform opacity-0 scale-95"
                               >
                                 <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                  {userNavigation.map((item) => (
-                                    <Menu.Item key={item.name}>
-                                      {({ active }) => (
-                                        <a
-                                          href={item.href}
-                                          className={classNames(
-                                            active ? 'bg-gray-100' : '',
-                                            'block px-4 py-2 text-sm text-gray-700'
-                                          )}
-                                          onClick={item.function}
-                                        >
-                                          {item.name}
-                                        </a>
-                                      )}
-                                    </Menu.Item>
-                                  ))}
+                                { parsedUserInfo.userType ==='admin' ? (adminNavigation.map((item) => (
+                            <Disclosure.Button
+                              key={item.name}
+                              as="a"
+                              className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                              
+                            >
+                              <button onClick={item.function}>
+                              {item.name}
+                              </button>
+                              
+                            </Disclosure.Button>
+                          ))):
+                          
+                          (userInfoStorage.userType === 'company' ? (companyNavigation.map(
+                            (item) => (
+                              <Disclosure.Button
+                                key={item.name}
+                                as="a"
+                                href={item.href}
+                                className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                                
+                              >
+                                {item.name}
+                              </Disclosure.Button>
+                            )
+                          )):
+
+                          (employeeNavigation.map(
+                            (item) => (
+                              <Disclosure.Button
+                                key={item.name}
+                                as="a"
+                                href={item.href}
+                                className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                                
+                              >
+                                {item.name}
+                              </Disclosure.Button>
+                            )
+                          ))
+                          
+                          )}
                                 </Menu.Items>
                               </Transition>
                             </Menu>
@@ -213,21 +266,7 @@ const navbar2 = () => {
 
               <Disclosure.Panel className="md:hidden">
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                  {navigation.map((item) => (
-                    <Disclosure.Button
-                      key={item.name}
-                      as="a"
-                      href={item.href}
-                      className={classNames(
-                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'block px-3 py-2 rounded-md text-base font-medium'
-                      )}
-                      aria-current={item.current ? 'page' : undefined}
-                      onClick={item.function}
-                    >
-                      {item.name}
-                    </Disclosure.Button>
-                  ))}
+                  
                 </div>
                 <div className="pt-4 pb-3 border-t border-gray-700">
                   <div className="flex items-center px-5">
@@ -247,17 +286,7 @@ const navbar2 = () => {
                     </button>
                   </div>
                   <div className="mt-3 px-2 space-y-1">
-                    {userNavigation.map((item) => (
-                      <Disclosure.Button
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
-                        onClick={item.function}
-                      >
-                        {item.name}
-                      </Disclosure.Button>
-                    ))}
+                       
                   </div>
                 </div>
               </Disclosure.Panel>

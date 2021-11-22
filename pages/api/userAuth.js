@@ -23,6 +23,7 @@ export default async (req, res)=>{
                 _id: user._id,
                 email: user.email,
                 userType: user.userType,
+                notifications: user.notifications,
                 token: generateToken(user._id)
             })
 

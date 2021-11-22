@@ -1,7 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useRouter} from 'next/router'
+
+
+
 const Index = () => {
     
+    //React hook
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
     const [email, setEmail] = useState();
@@ -22,6 +26,8 @@ const Index = () => {
         event.preventDefault();
         const reqBody = {firstName: firstName, lastName:lastName, email: email, password:password, userType:'company', street: streetAddress, city: city,  state: province, country:country, zipCode: zipCode, description: description, companyName:companyName, noOfEmp:noOfEmployees, role_in_hiring_process: companyRole };
 
+
+        //sends request to backend
         fetch('/api/organization/register',{
             method: 'POST',
             body: JSON.stringify(reqBody),
@@ -34,14 +40,20 @@ const Index = () => {
        
         let userInfo = JSON.parse(localStorage.getItem("userInfo"))
       if (userInfo.userType === 'company'){
-        router.push('/organization/company_dashboard')
+        router.push('/components/payment')
       }else{
         console.log('user is not a company')
       }
     
        })
 
+
+       
+
     };
+
+
+   
     return (
         <form id="login" onSubmit={handleSubmit}>
             <div className="bg-white dark:bg-gray-800">
@@ -116,7 +128,7 @@ const Index = () => {
                                         <label htmlFor="FirstName" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
                                             First Name
                                         </label>
-                                        <input type="text" id="FirstName" name="firstName" required className="border w-full border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400" onChange={(e)=>setFirstName(e.target.value)}/>
+                                        <input type="text" id="FirstName" name="firstName" required className="border w-full border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400" onChange={(e)=>{setFirstName(e.target.value)}}/>
                                     </div>
                                     <div className="flex flex-col w-full md:w-96">
                                     <label htmlFor="CompanyName" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">

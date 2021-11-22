@@ -10,7 +10,9 @@ export default async (req, res)=>{
         connectDB()
         
         if(req.method== 'POST'){
-            
+
+
+                //extracts data from request bosy
                 const {firstName , lastName, email , password, userType, companyName , noOfEmp, role_in_hiring_process, description,
                 
                 street, city, state, country, zipCode   }= req.body;
@@ -25,6 +27,15 @@ export default async (req, res)=>{
                     const company = await Company.create({companyName, noOfEmp, role_in_hiring_process, description, street, city, state, country, zipCode, user_id})
 
                     if(company){
+
+                        const admin  = await User.findOne({userType:'admin'})
+
+                        if(admin){
+                            admin.notifications.push(`${companyName} profile created by ${firstName}`)
+
+                           const notificationCreated =  await admin.save()
+                           console.log(notificationCreated)
+                        }
 
                         res.status(200).json({  
 

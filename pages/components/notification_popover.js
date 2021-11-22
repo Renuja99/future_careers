@@ -1,29 +1,25 @@
 import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, BellIcon } from '@heroicons/react/solid'
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 
-const solutions = [
-  {
-    name: 'Insights',
-    description: 'Measure actions your users take',
-    href: '##',
-    icon: IconOne,
-  },
-  {
-    name: 'Automations',
-    description: 'Create your own targeted content',
-    href: '##',
-    icon: IconTwo,
-  },
-  {
-    name: 'Reports',
-    description: 'Keep track of your growth',
-    href: '##',
-    icon: IconThree,
-  },
-]
 
 export default function Example() {
+
+    const [notificationArray, setNotificationArray] = useState('')
+
+
+    
+
+  //React Hook
+  useEffect(()=>{
+
+    const notifications = JSON.parse(localStorage.getItem("userInfo"))
+    if(notifications){
+      setNotificationArray(notifications.notifications)
+    }
+
+  }, [])
+
   return (
     <div className="w-1/3 pr-0  top-0">
       <Popover className="relative pr-0">
@@ -55,25 +51,25 @@ export default function Example() {
               <Popover.Panel className="absolute z-10 w-screen max-w-sm  pl-0 mt-3 transform -translate-x-72  sm:pr-96 -left-32   lg:max-w-4xl">
                 <div className="overflow-hidden  rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                   <div className="relative flex flex-col gap-8 bg-white p-7 lg:grid-cols-2">
-                    {solutions.map((item) => (
+                    {Array.isArray(notificationArray)?(notificationArray.map((item, index) => (
                       <a
-                        key={item.name}
-                        href={item.href}
+                        key={index}
+                        href='#'
                         className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
                       >
-                        <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white sm:h-12 sm:w-12">
-                          <item.icon aria-hidden="true" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="text-sm font-medium text-gray-900">
-                            {item.name}
+                        {/* <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 bg-gray-900 text-white sm:h-12 sm:w-12">
+                          
+                        </div> */}
+                        <div className="ml-4 bg-gray-200 w-full rounded-sm">
+                          <p className="bg-green-300 w-auto text-sm font-medium text-gray-900">
+                            {`notification ${index +1 }`}
                           </p>
                           <p className="text-sm text-gray-500">
-                            {item.description}
+                            {item}
                           </p>
                         </div>
                       </a>
-                    ))}
+                    ))):null}
                   </div>
                   <div className="p-4 bg-gray-50">
                     <a
