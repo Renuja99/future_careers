@@ -31,7 +31,7 @@ export default function Home() {
                             <p className="md:w-80 text-base leading-6 mt-4 text-gray-600">Full access to all features and no credit card required</p>
                         </div>
                         </Link>
-                        <Link href={'/components/user_profile_form'}>
+                        <Link href={'/components/company_profile_form'}>
                         <div role="listitem" className="bg-white cursor-pointer shadow rounded-lg mt-10 flex relative z-30">
                             <div className="w-2.5  h-auto bg-indigo-700 rounded-tl-md rounded-bl-md" />
                             <div className="w-full p-8">

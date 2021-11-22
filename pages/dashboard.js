@@ -12,8 +12,8 @@ const dashboard = () => {
 
         const userInfo = JSON.parse(localStorage.getItem("userInfo"))
 
-        let responseStatus;
-        
+        if(userInfo){
+
         fetch('/api/admin/', {
             method: 'POST',
             body: localStorage.getItem("userInfo"),
@@ -29,6 +29,16 @@ const dashboard = () => {
             router.push('/login')
         }; return response.json(); })           
           .then((data) => console.log(data))
+          .catch( error=>{
+              console.log(error)
+              
+          }
+              
+          )
+        }else{
+            router.push('/')
+        }
+        
           
 
     }, [])

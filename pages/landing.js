@@ -11,8 +11,8 @@ const Landing = () => {
         <img className="hidden lg:block lg:absolute -top-20 -left-20 mt-32" src="wallet-svgrepo-com.svg" alt=""/>
         <img className="hidden lg:block lg:absolute bottom-10 right-0 mt-20" src="terms-of-delivery-svgrepo-com.svg" alt=""/>
         <div className="relative container  pt-12 px-4 mx-auto text-center">
-            <h2 className="lg:mt-24 mb-8 lg:mb-24 text-4xl leading-loose lg:text-7xl font-semibold text-red-400">Find Great places to work and<br/>top employees to hire</h2>
-            <h2 className="max-w-3xl mx-auto mb-8 lg:mb-24 lg:text-3xl font-normal lg:leading-10 text-gray-700">Build a well-presented brand that everyone will love. Take care to develop resources continually and integrate them with previous projects</h2>
+            <h2 className="lg:mt-24 mb-8 lg:mb-24 text-3xl leading-loose lg:text-8xl font-black text-green-400">Find Great places to work and<br/>top employees to hire</h2>
+            <h2 className="max-w-5xl mx-auto mb-8 lg:mb-24 lg:text-3xl font-normal lg:leading-10 text-gray-700">Find a dream job that perfectly matches your needs! Applying is just one click away! Make your job adverts stand out using our brand new features! Find the best match for your vacancy through FutureSeekers.lk </h2>
             <a className="inline-block w-full md:w-auto mb-2 md:mb-0 px-8 py-4 mr-4 text-xl font-b leading-normal bg-red-400 hover:bg-red-500 text-white rounded transition duration-200" href="#">Sign Up to get employed</a>
             <a className="inline-block w-full md:w-auto mb-2 md:mb-0 px-8 py-4 mr-4 text-xl font-b leading-normal bg-indigo-400 hover:bg-indigo-500 text-white rounded transition duration-200" href="#">Hire employees/ Post job</a>
         </div>
@@ -77,7 +77,7 @@ const Landing = () => {
             </div>
             <div>
               <h3 className="mb-2 text-xl font-semibold font-heading">Easy to customize</h3>
-              <p className="text-blueGray-400 leading-loose">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis expedita animi.</p>
+              <p className="text-gray-400 leading-loose">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis expedita animi.</p>
             </div>
           </div>
           <div className="flex items-start py-4">
@@ -88,7 +88,7 @@ const Landing = () => {
             </div>
             <div>
               <h3 className="mb-2 text-xl font-semibold font-heading">Flexible software</h3>
-              <p className="text-blueGray-400 leading-loose">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis expedita animi.</p>
+              <p className="text-gray-400 leading-loose">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis expedita animi.</p>
             </div>
           </div>
           <div className="flex items-start py-4">
@@ -99,7 +99,7 @@ const Landing = () => {
             </div>
             <div>
               <h3 className="mb-2 text-xl font-semibold font-heading">Best access for all of the resources</h3>
-              <p className="text-blueGray-400 leading-loose">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis expedita animi.</p>
+              <p className="text-gray-400 leading-loose">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis expedita animi.</p>
             </div>
           </div>
         </div>

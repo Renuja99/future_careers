@@ -1,8 +1,10 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
+import NotificationPopover from './notification_popover'
+
 
 const user = {
   name: 'Tom Cook',
@@ -11,23 +13,59 @@ const user = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-  { name: 'Dashboard', href: '/organization/newJobAdvert', current: true },
-  { name: 'New Job Advert', href: '#', current: false },
-  { name: 'Job Adverts', href: '#', current: false },
+  { name: 'Home', href: '/organization/newJobAdvert', current: true },
+  { name: 'Contact Us', href: '#', current: false },
+  { name: 'About Us', href: '#', current: false },
  
 ]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
+
+
+
+
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+
+
+
 const navbar2 = () => {
+
+
+  const [ loggedIn, setLoggedIn] = useState(false)
+  const [ userInfoStorage, setUserInfoFromLocalStorage] = useState()
+
+ const userNavigation = [
+  { name: 'Your Profile', href: '#', function: '#'},
+  { name: 'Settings', href: '#', function: '#' },
+  { name: 'Sign out', href: '#', function: ()=>{ setUserInfoFromLocalStorage(localStorage.removeItem("userInfo")) } },
+]
+
+  useEffect(()=>{
+
+
+  
+
+    setUserInfoFromLocalStorage(localStorage.getItem("userInfo"))
+
+     if(userInfoStorage){
+    const userInfo = JSON.parse(userInfoStorage)
+      if(userInfo){
+        setLoggedIn(true)
+      }
+    
+     }else{
+       setLoggedIn(false)
+     }
+
+   
+
+  }, [userInfoStorage])
+
+
     return (
-        <Disclosure as="nav" className="bg-gray-800">
+        <Disclosure as="nav" className="bg-gray-800" >
           {({ open }) => (
             <>
               <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +91,7 @@ const navbar2 = () => {
                               navigation[0].current
                                 ? 'bg-gray-900 text-white'
                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                              'px-3 py-2 rounded-md text-sm font-medium'
+                              'px-3 py-2 rounded-md text-sm font-black'
                             )}
                             aria-current={navigation[0].current ? 'page' : undefined}
                           >
@@ -68,7 +106,7 @@ const navbar2 = () => {
                               navigation[1].current
                                 ? 'bg-gray-900 text-white'
                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                              'px-3 py-2 rounded-md text-sm font-medium'
+                              'px-3 py-2 rounded-md text-sm font-black'
                             )}
                             aria-current={navigation[0].current ? 'page' : undefined}
                           >
@@ -83,7 +121,7 @@ const navbar2 = () => {
                               navigation[2].current
                                 ? 'bg-gray-900 text-white'
                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                              'px-3 py-2 rounded-md text-sm font-medium'
+                              'px-3 py-2 rounded-md text-sm font-black'
                             )}
                             aria-current={navigation[2].current ? 'page' : undefined}
                           >
@@ -93,54 +131,72 @@ const navbar2 = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="hidden md:block">
-                    <div className="ml-4 flex items-center md:ml-6">
-                      <button
-                        type="button"
-                        className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                      >
-                        <span className="sr-only">View notifications</span>
-                        <BellIcon className="h-6 w-6" aria-hidden="true" />
-                      </button>
+                  {
+                    loggedIn ? (
 
-                      {/* Profile dropdown */}
-                      <Menu as="div" className="ml-3 relative">
-                        <div>
-                          <Menu.Button className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                            <span className="sr-only">Open user menu</span>
-                            <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
-                          </Menu.Button>
+                            <div className="hidden md:block">
+                          <div className="ml-4 flex items-center md:ml-6">
+                            
+                            <NotificationPopover/>
+
+                            {/* Profile dropdown */}
+                            <Menu as="div" className="ml-3 relative">
+                              <div>
+                                <Menu.Button className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                                  <span className="sr-only">Open user menu</span>
+                                  <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                                </Menu.Button>
+                              </div>
+                              <Transition
+                                as={Fragment}
+                                enter="transition ease-out duration-100"
+                                enterFrom="transform opacity-0 scale-95"
+                                enterTo="transform opacity-100 scale-100"
+                                leave="transition ease-in duration-75"
+                                leaveFrom="transform opacity-100 scale-100"
+                                leaveTo="transform opacity-0 scale-95"
+                              >
+                                <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                  {userNavigation.map((item) => (
+                                    <Menu.Item key={item.name}>
+                                      {({ active }) => (
+                                        <a
+                                          href={item.href}
+                                          className={classNames(
+                                            active ? 'bg-gray-100' : '',
+                                            'block px-4 py-2 text-sm text-gray-700'
+                                          )}
+                                          onClick={item.function}
+                                        >
+                                          {item.name}
+                                        </a>
+                                      )}
+                                    </Menu.Item>
+                                  ))}
+                                </Menu.Items>
+                              </Transition>
+                            </Menu>
+                          </div>
                         </div>
-                        <Transition
-                          as={Fragment}
-                          enter="transition ease-out duration-100"
-                          enterFrom="transform opacity-0 scale-95"
-                          enterTo="transform opacity-100 scale-100"
-                          leave="transition ease-in duration-75"
-                          leaveFrom="transform opacity-100 scale-100"
-                          leaveTo="transform opacity-0 scale-95"
-                        >
-                          <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            {userNavigation.map((item) => (
-                              <Menu.Item key={item.name}>
-                                {({ active }) => (
-                                  <a
-                                    href={item.href}
-                                    className={classNames(
-                                      active ? 'bg-gray-100' : '',
-                                      'block px-4 py-2 text-sm text-gray-700'
-                                    )}
-                                  >
-                                    {item.name}
-                                  </a>
-                                )}
-                              </Menu.Item>
-                            ))}
-                          </Menu.Items>
-                        </Transition>
-                      </Menu>
-                    </div>
-                  </div>
+                    ) : (
+                        <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+                          <Link href="/login">
+                          <a href="#" className="whitespace-nowrap text-base font-black text-gray-200 hover:text-gray-900">
+                          Sign in
+                          </a>
+                          </Link>
+
+                          <Link href={'/components/signup_select'}>
+                          <a
+                          href="#"
+                          className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-black text-white bg-green-400 hover:bg-indigo-700"
+                          >
+                          Sign up
+                          </a>
+                          </Link>
+                        </div>
+                    )
+                  }
                   <div className="-mr-2 flex md:hidden">
                     {/* Mobile menu button */}
                     <Disclosure.Button className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
@@ -167,6 +223,7 @@ const navbar2 = () => {
                         'block px-3 py-2 rounded-md text-base font-medium'
                       )}
                       aria-current={item.current ? 'page' : undefined}
+                      onClick={item.function}
                     >
                       {item.name}
                     </Disclosure.Button>
@@ -196,6 +253,7 @@ const navbar2 = () => {
                         as="a"
                         href={item.href}
                         className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                        onClick={item.function}
                       >
                         {item.name}
                       </Disclosure.Button>

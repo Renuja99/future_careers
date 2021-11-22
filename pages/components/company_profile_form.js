@@ -256,46 +256,7 @@ const Index = () => {
                         </div>
                     </div>
                     <div className="container mx-auto pb-6">
-                        <div className="flex items-center pb-4 border-b border-gray-300 dark:border-gray-700 px-8 text-gray-800 dark:text-gray-100">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-mail" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" />
-                                <rect x={3} y={5} width={18} height={14} rx={2} />
-                                <polyline points="3 7 12 13 21 7" />
-                            </svg>
-                            <p className="text-sm font-bold ml-2 text-gray-800 dark:text-gray-100">Via Email</p>
-                        </div>
-                        <div className="px-8">
-                            <div className="flex justify-between items-center mb-8 mt-4">
-                                <div className="w-9/12">
-                                    <p className="text-sm text-gray-800 dark:text-gray-100 pb-1">Comments</p>
-                                    <p className="text-sm text-gray-500 dark:text-gray-400">Get notified when a post or comment is made</p>
-                                </div>
-                                <div className="cursor-pointer rounded-full bg-gray-200 relative shadow-sm">
-                                    <input type="checkbox" name="email_comments" id="toggle1" className="focus:outline-none checkbox w-6 h-6 rounded-full bg-white dark:bg-gray-400 absolute shadow-sm appearance-none cursor-pointer border border-transparent top-0 bottom-0 m-auto" />
-                                    <label htmlFor="toggle1" className="toggle-label block w-12 h-4 overflow-hidden rounded-full bg-gray-300 dark:bg-gray-800 cursor-pointer" />
-                                </div>
-                            </div>
-                            <div className="flex justify-between items-center mb-8">
-                                <div className="w-9/12">
-                                    <p className="text-sm text-gray-800 dark:text-gray-100 pb-1">Job Applications</p>
-                                    <p className="text-sm text-gray-500 dark:text-gray-400">Get notified when a candidate applies to a job posting</p>
-                                </div>
-                                <div className="cursor-pointer rounded-full bg-gray-200 relative shadow-sm">
-                                    <input type="checkbox" name="email_job_application" id="toggle2" className="focus:outline-none checkbox w-6 h-6 rounded-full bg-white dark:bg-gray-400 absolute shadow-sm appearance-none cursor-pointer border border-transparent top-0 bottom-0 m-auto" />
-                                    <label htmlFor="toggle2" className="toggle-label block w-12 h-4 overflow-hidden rounded-full bg-gray-300 dark:bg-gray-800 cursor-pointer" />
-                                </div>
-                            </div>
-                            <div className="flex justify-between items-center mb-8">
-                                <div className="w-9/12">
-                                    <p className="text-sm text-gray-800 dark:text-gray-100 pb-1">Product Updates</p>
-                                    <p className="text-sm text-gray-500 dark:text-gray-400">Get notifitied when there is a new product feature or upgrades</p>
-                                </div>
-                                <div className="cursor-pointer rounded-full bg-gray-200 relative shadow-sm">
-                                    <input type="checkbox" name="email_product_update" id="toggle3" className="focus:outline-none checkbox w-6 h-6 rounded-full bg-white dark:bg-gray-400 absolute shadow-sm appearance-none cursor-pointer border border-transparent top-0 bottom-0 m-auto" />
-                                    <label htmlFor="toggle3" className="toggle-label block w-12 h-4 overflow-hidden rounded-full bg-gray-300 dark:bg-gray-800 cursor-pointer" />
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div className="pb-4 border-b border-gray-300 dark:border-gray-700 px-8">
                             <div className="flex items-center text-gray-800 dark:text-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-bell" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">

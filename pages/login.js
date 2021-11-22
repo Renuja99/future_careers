@@ -73,7 +73,7 @@ export default function login(){
        
         let userInfo = JSON.parse(localStorage.getItem("userInfo"))
       if (userInfo.userType === 'admin'){
-        router.push('/dashboard')
+        router.push('/')
       }else{
         console.log('user is not an admin')
       }
