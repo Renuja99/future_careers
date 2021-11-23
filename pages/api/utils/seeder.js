@@ -5,7 +5,7 @@ import admin from './admin'
 
 connectDB()
 
-const importData=async(req, res)=>{
+const importData = async(req, res)=>{
     try{
         await  JobAdvert.deleteMany()
         await  JobAdvert.insertMany(adverts)
@@ -17,6 +17,7 @@ const importData=async(req, res)=>{
         res.status(500).send()
     }
 }
+
 
 const createAdmin = async(req, res)=>{
     try{

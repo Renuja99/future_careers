@@ -234,7 +234,7 @@ const employeeNavigation = [
                     ) : (
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                           <Link href="/login">
-                          <a href="#" className="whitespace-nowrap text-base font-black text-gray-200 hover:text-gray-900">
+                          <a href="#" className="whitespace-nowrap text-base font-black text-gray-200 hover:text-green-400">
                           Sign in
                           </a>
                           </Link>
@@ -242,7 +242,7 @@ const employeeNavigation = [
                           <Link href={'/components/signup_select'}>
                           <a
                           href="#"
-                          className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-black text-white bg-green-400 hover:bg-indigo-700"
+                          className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-black text-white bg-green-400 hover:bg-indigo-400"
                           >
                           Sign up
                           </a>

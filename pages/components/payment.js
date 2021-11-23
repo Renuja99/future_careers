@@ -1,4 +1,5 @@
 import './Payment.module.css'
+import Link from 'next/link'
 
 const Payment = () => {
     return (
@@ -84,7 +85,9 @@ const Payment = () => {
             </div>
         </div>
         <div>
+            <Link href="/organization/company_dashboard">
             <button className="block w-full max-w-xs mx-auto bg-red-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"><i className="mdi mdi-lock-outline mr-1"></i> PAY NOW</button>
+            </Link>
         </div>
     </div>
 </div>

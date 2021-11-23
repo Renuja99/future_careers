@@ -12,23 +12,26 @@ const Layout = () => {
 
         const userInfo = JSON.parse(localStorage.getItem("userInfo"))
 
-        let responseStatus;
+        if(userInfo){
+            fetch('/api/admin/', {
+                method: 'POST',
+                body: localStorage.getItem("userInfo"),
+                headers:{
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${userInfo.token}`
+                }
+            }).then((response)=>  {
+                if(response.status == 200){ 
+                    console.log('token is valied')
+                 }else if(response.status == 404){
+                console.log('Token is not valid')
+                router.push('/login')
+            }; return response.json(); })           
+              .then((data) => console.log(data))
+        }else{
+            router.push('/')
+        }       
         
-        fetch('/api/admin/', {
-            method: 'POST',
-            body: localStorage.getItem("userInfo"),
-            headers:{
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${userInfo.token}`
-            }
-        }).then((response)=>  {
-            if(response.status == 200){ 
-                console.log('token is valied')
-             }else if(response.status == 404){
-            console.log('Token is not valid')
-            router.push('/login')
-        }; return response.json(); })           
-          .then((data) => console.log(data))
           
 
     }, [])
